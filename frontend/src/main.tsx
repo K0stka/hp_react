@@ -6,24 +6,20 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 
 // Pages
-import App from "../src/App.tsx";
-import ErrorPage from "../src/ErrorPage.tsx";
+import Panel from "./anonymous/Panel.tsx";
+import Login from "./anonymous/Login.tsx";
+import Admin from "./Admin.tsx";
+import App from "./authenticated/App.tsx";
+import ErrorPage from "./ErrorPage.tsx";
 
 // Router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-// Firebase
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <App />,
-		errorElement: <ErrorPage />,
-	},
-]);
-
+// Your web app's Firebase configuration
 const firebaseConfig = {
 	apiKey: "AIzaSyCxnWtpqOke2kKZVpvx-6XDvhDxD4V31Nk",
 	authDomain: "hejpanel.firebaseapp.com",
@@ -34,9 +30,32 @@ const firebaseConfig = {
 	measurementId: "G-8E8QMLNQB0",
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// @ts-ignore
 const analytics = getAnalytics(app);
+
+// ? createBrowserRouter([
+// 		{
+// 			path: "/",
+// 			element: <App />,
+// 			errorElement: <ErrorPage />,
+// 		},
+//   ])
+const router = createBrowserRouter([
+	{
+		path: "/",
+		element: <Panel />,
+		errorElement: <ErrorPage />,
+	},
+	{
+		path: "/login",
+		element: <Login />,
+	},
+	{
+		path: "/admin",
+		element: <Admin />,
+	},
+]);
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>

@@ -1,0 +1,11 @@
+@import "normalize.css";
+
+html,
+body {
+	width: 100dvw;
+	min-height: 100dvh;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	overflow: auto;
+}
